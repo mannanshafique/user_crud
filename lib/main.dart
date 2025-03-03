@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:user_crud/core/view/user_home_screen.dart';
+import 'package:user_crud/routes/app_router.dart';
 import 'package:user_crud/utils/app_colors.dart';
 
 import 'core/controller/user_provider.dart';
@@ -28,7 +28,8 @@ class MyApp extends StatelessWidget {
             colorScheme: ColorScheme.fromSeed(seedColor: AppColors.darkBlue),
             useMaterial3: false,
           ),
-          home: const HomeScreen()),
+          onGenerateRoute: AppRouter.onGenerateRoute,
+          ),
     );
   }
 }

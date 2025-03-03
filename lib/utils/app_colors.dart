@@ -8,6 +8,7 @@ class AppColors {
   static const Color primaryBlue = Color(0xFF4795F9);
   static const Color darkBlue = Color(0xFF006CEE);
   static const Color black = Colors.black;
+  static const Color lightGrey = Colors.grey;
 
   //! Shimmer
   static const shimmerBaseColor = Color.fromRGBO(64, 64, 64, 0.2);
