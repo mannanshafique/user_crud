@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:user_crud/core/model/user_model.dart';
 
 class UserProvider extends ChangeNotifier {
-  List<UserData> _users = [];
+  final List<UserData> _users = [];
 
   List<UserData> get users => _users;
 

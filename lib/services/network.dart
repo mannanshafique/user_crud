@@ -51,29 +51,29 @@ class Network {
   }) async {
     Response? response;
 
-    // if (await _connectivityManager!.isInternetConnected()) {
-    try {
-      _dio?.options.connectTimeout = connectTimeOut;
-      response = await _dio!.get(NetworkStrings.API_BASE_URL + endPoint,
-          cancelToken: _cancelRequestToken,
-          options: Options(
-            headers: {
-              'Accept': NetworkStrings.ACCEPT,
-            },
-            sendTimeout: connectTimeOut,
-            receiveTimeout: connectTimeOut,
-          ));
-    } on DioException catch (e) {
-      log("Error:${e.response.toString()}");
-      _validateException(
-        response: e.response,
-        context: context,
-        onFailure: onFailure,
-      );
+    if (await _connectivityManager!.isInternetConnected()) {
+      try {
+        _dio?.options.connectTimeout = connectTimeOut;
+        response = await _dio!.get(NetworkStrings.API_BASE_URL + endPoint,
+            cancelToken: _cancelRequestToken,
+            options: Options(
+              headers: {
+                'Accept': NetworkStrings.ACCEPT,
+              },
+              sendTimeout: connectTimeOut,
+              receiveTimeout: connectTimeOut,
+            ));
+      } on DioException catch (e) {
+        log("Error:${e.response.toString()}");
+        _validateException(
+          response: e.response,
+          context: context,
+          onFailure: onFailure,
+        );
+      }
+    } else {
+      _noInternetConnection(onFailure: onFailure);
     }
-    // } else {
-    //   _noInternetConnection(onFailure: onFailure);
-    // }
 
     return response;
   }
